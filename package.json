@@ -1,0 +1,7 @@
+{
+  "name": "begins-backend-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Pablo Felipe <pablofelipe1999@hotmail.com>",
+  "license": "MIT"
+}
