@@ -9,3 +9,38 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Users {
+  id String @id @default(uuid())
+  name String
+  email String
+  password String
+  created_at DateTime @default(now())
+}
+
+model Products {
+  id String @id @default(uuid())
+  name String
+  description String
+  price Float
+  stock_quantity Int
+  created_at DateTime @default(now())
+}
+
+model Purchase_Orders {
+  id String @id @default(uuid())
+  user_id String
+  total_amount Float
+  status String
+  shipping_address String
+  created_at DateTime @default(now())
+}
+
+model Purchase_Orders_Items {
+  id String @id @default(uuid())
+  purchase_order_id String
+  product_id String
+  quantity Int
+  unit_price Float
+  created_at DateTime @default(now())
+}
