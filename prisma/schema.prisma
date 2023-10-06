@@ -16,7 +16,7 @@ model Users {
   email String
   password String
   created_at DateTime @default(now())
-  Purchase_Orders Purchase_Orders[]
+  purchase_orders PurchaseOrders[]
 }
 
 model Products {
@@ -26,10 +26,10 @@ model Products {
   price Float
   stock_quantity Int
   created_at DateTime @default(now())
-  Purchase_Orders_Items Purchase_Orders_Items[]
+  purchase_order_items PurchaseOrderItems[]
 }
 
-model Purchase_Orders {
+model PurchaseOrders {
   id String @id @default(uuid())
   user Users @relation(fields: [user_id], references: [id])
   user_id String
@@ -37,16 +37,20 @@ model Purchase_Orders {
   status String
   shipping_address String
   created_at DateTime @default(now())
-  Purchase_Orders_Items Purchase_Orders_Items[]
+  purchase_order_items PurchaseOrderItems[]
+
+  @@map("Purchase_Orders")
 }
 
-model Purchase_Orders_Items {
+model PurchaseOrderItems {
   id String @id @default(uuid())
-  purchase_order Purchase_Orders @relation(fields: [purchase_order_id], references: [id])
+  purchase_order PurchaseOrders @relation(fields: [purchase_order_id], references: [id])
   purchase_order_id String
   product Products @relation(fields: [product_id], references: [id])
   product_id String
   quantity Int
   unit_price Float
   created_at DateTime @default(now())
+
+  @@map("Purchase_Order_Items")
 }
